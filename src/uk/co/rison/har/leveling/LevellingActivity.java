@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 
 
-public class LevelingActivity extends Activity {
+public class LevellingActivity extends Activity {
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,8 +20,8 @@ public class LevelingActivity extends Activity {
                TextView tv = (TextView) findViewById(R.id.new_transverse);
                tv.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
-        	  Intent intentMain = new Intent(LevelingActivity.this , NewTraverseActivity.class);
-              LevelingActivity.this.startActivity(intentMain);           
+        	  Intent intentMain = new Intent(LevellingActivity.this , NewTraverseActivity.class);
+              LevellingActivity.this.startActivity(intentMain);           
 
           }
         });
@@ -32,14 +32,3 @@ public class LevelingActivity extends Activity {
 
 	
 }
-
-
-
-
-
-    
-
-
-
-
-
