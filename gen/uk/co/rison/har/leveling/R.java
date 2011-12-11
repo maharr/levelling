@@ -16,10 +16,10 @@ public final class R {
     public static final class id {
         public static final int LevellingDate=0x7f060012;
         public static final int TraverseInfo=0x7f060013;
-        public static final int editText1=0x7f06000e;
-        public static final int editText2=0x7f060010;
         public static final int item1=0x7f060014;
         public static final int new_transverse=0x7f060002;
+        public static final int observer=0x7f06000e;
+        public static final int staffman=0x7f060010;
         public static final int tableLayout1=0x7f060001;
         public static final int textView1=0x7f060000;
         public static final int textView2=0x7f060005;

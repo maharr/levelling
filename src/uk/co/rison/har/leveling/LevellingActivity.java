@@ -20,6 +20,7 @@ public class LevellingActivity extends Activity {
                TextView tv = (TextView) findViewById(R.id.new_transverse);
                tv.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
+        	  
         	  Intent intentMain = new Intent(LevellingActivity.this , NewTraverseActivity.class);
               LevellingActivity.this.startActivity(intentMain);           
 

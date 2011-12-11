@@ -89,7 +89,7 @@
             android:paddingTop="20sp" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/observer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textCapWords|textPersonName" >
@@ -105,7 +105,7 @@
             android:paddingTop="20sp"/>
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/staffman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textCapWords|textPersonName" />
@@ -128,8 +128,7 @@
             android:id="@+id/TraverseInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create"
-            android:onClick="TraverseButton" />
+            android:text="Create"/>
 
     </TableLayout>
     </ScrollView>
