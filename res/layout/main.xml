@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/tableLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TextView
+            android:id="@+id/new_transverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create New Transverse"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="25sp"
+            />
+        
+        <TextView
+            android:id="@+id/view_transverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Previous Transverse"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="25sp" />
+
+    </TableLayout>
+    
