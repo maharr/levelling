@@ -29,7 +29,7 @@ public final class R {
         public static final int textView6=0x7f06000d;
         public static final int textView7=0x7f06000f;
         public static final int textView8=0x7f060011;
-        public static final int travCLosed=0x7f060007;
+        public static final int travClosed=0x7f060007;
         public static final int travCompound=0x7f06000b;
         public static final int travOpen=0x7f060009;
         public static final int traverseName=0x7f060004;
