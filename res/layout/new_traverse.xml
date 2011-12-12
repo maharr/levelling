@@ -8,6 +8,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
+        <requestFocus />
+        
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
@@ -43,7 +45,8 @@
                 android:id="@+id/travCLosed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Closed" />
+                android:text="Closed"
+                android:checked="true" />
             
             <TextView
                 android:id="@+id/textView3"
