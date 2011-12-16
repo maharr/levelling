@@ -14,7 +14,7 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Traverse Name"
+            android:text="Traverse Name*"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:paddingTop="8sp" />
 
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Traverse Type"
+            android:text="Traverse Type*"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:paddingTop="20sp" />
 
@@ -117,7 +117,7 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Survey Date"
+            android:text="Survey Date*"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:paddingTop="20sp" />
 

@@ -1,7 +1,6 @@
 package uk.co.rison.har.leveling;
 
 import android.app.Activity;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,12 +8,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.Toast;
 import uk.co.rison.har.leveling.database.TraverseAdapter;
 
 public class NewTraverseActivity extends Activity{
 	private TraverseAdapter mDbHelper;
-	private Cursor cursor;
 	private Long mRowId;
 	/** Called when the activity is first created. */
     @Override
@@ -27,9 +25,15 @@ public class NewTraverseActivity extends Activity{
         Button CreateTraverse = (Button) findViewById(R.id.TraverseInfo);
         CreateTraverse.setOnClickListener(new View.OnClickListener() {
 			
+			@SuppressWarnings("unused")
 			public void onClick(View v) {
 				EditText NameInput = (EditText) findViewById(R.id.traverseName);
-				String name = NameInput.getText().toString();
+				String name = null;
+				if  (NameInput.getText().toString().equals("")){
+					name = null;
+				}else{	
+					name = NameInput.getText().toString();
+				}
 				
 				RadioButton Closed = (RadioButton) findViewById(R.id.travClosed);
 				RadioButton Open = (RadioButton) findViewById(R.id.travOpen);
@@ -59,12 +63,20 @@ public class NewTraverseActivity extends Activity{
 							
 				mRowId = null;
 				
+				
+				if (name != null){
+					
 					long id = mDbHelper.createTraverse(name,type,observer,staffman,survey_date,modified_date);
 					if (id > 0) {
 						mRowId = id;
-						Log.w("Debug", "Row Id That Has Been Inserted Is " + mRowId );
+						Log.d("Debug", "Row Id That Has Been Inserted Is " + mRowId );
+						Log.d("The time That has been stored is" , name + type + observer + staffman + survey_date + modified_date );
+						Log.d("Value of Name", "one" + name);
 				
 					}
+				}else{
+					Toast.makeText(getApplicationContext(), "Please Complete of the Fields marked *", Toast.LENGTH_LONG).show();
+				}
 			}		
 		});
     } 
