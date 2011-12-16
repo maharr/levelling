@@ -21,11 +21,9 @@ public class NewTraverseActivity extends Activity{
         setContentView(R.layout.new_traverse);
         mDbHelper = new TraverseAdapter(this);
 		mDbHelper.open();
-        Log.w("Debug", "Page Has been Opened");
         Button CreateTraverse = (Button) findViewById(R.id.TraverseInfo);
         CreateTraverse.setOnClickListener(new View.OnClickListener() {
 			
-			@SuppressWarnings("unused")
 			public void onClick(View v) {
 				EditText NameInput = (EditText) findViewById(R.id.traverseName);
 				String name = null;
@@ -68,11 +66,7 @@ public class NewTraverseActivity extends Activity{
 					
 					long id = mDbHelper.createTraverse(name,type,observer,staffman,survey_date,modified_date);
 					if (id > 0) {
-						mRowId = id;
-						Log.d("Debug", "Row Id That Has Been Inserted Is " + mRowId );
-						Log.d("The time That has been stored is" , name + type + observer + staffman + survey_date + modified_date );
-						Log.d("Value of Name", "one" + name);
-				
+						mRowId = id;		
 					}
 				}else{
 					Toast.makeText(getApplicationContext(), "Please Complete of the Fields marked *", Toast.LENGTH_LONG).show();
