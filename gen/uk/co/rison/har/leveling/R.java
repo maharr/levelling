@@ -38,7 +38,7 @@ public final class R {
         public static final int view_transverse=0x7f060003;
     }
     public static final class layout {
-        public static final int add_traverse_points=0x7f030000;
+        public static final int display_traverse_points=0x7f030000;
         public static final int main=0x7f030001;
         public static final int new_traverse=0x7f030002;
     }

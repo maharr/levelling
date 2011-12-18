@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name="NewTraverseActivity"></activity>
+        <activity android:name="DisplayPointsActivity"></activity>
     </application>
 
 </manifest>

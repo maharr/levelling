@@ -1,8 +1,8 @@
 package uk.co.rison.har.leveling;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -66,7 +66,12 @@ public class NewTraverseActivity extends Activity{
 					
 					long id = mDbHelper.createTraverse(name,type,observer,staffman,survey_date,modified_date);
 					if (id > 0) {
-						mRowId = id;		
+						mRowId = id;
+						Bundle b = new Bundle();
+						Intent i = new Intent(NewTraverseActivity.this,DisplayPointsActivity.class);
+						i.putExtras(b);
+						NewTraverseActivity.this.startActivity(i);
+						finish();
 					}
 				}else{
 					Toast.makeText(getApplicationContext(), "Please Complete of the Fields marked *", Toast.LENGTH_LONG).show();
