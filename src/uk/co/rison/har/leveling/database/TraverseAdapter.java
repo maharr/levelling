@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class TraverseAdapter {
 	// Database fields
@@ -27,11 +28,13 @@ public class TraverseAdapter {
 		public TraverseAdapter open() throws SQLException {
 			dbHelper = new TraverseDatabaseHelper(context);
 			db = dbHelper.getWritableDatabase();
+			Log.d("database Opened ", "BY UNKONWN");
 			return this;
 		}
 
 		public void close() {
 			dbHelper.close();
+			Log.d("database closed", "BY UNKONWN");
 		}
 
 		
