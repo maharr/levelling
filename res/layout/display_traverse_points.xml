@@ -3,31 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
+
         <TextView
             android:id="@+id/Name"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/Type"
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
         <TextView
             android:id="@+id/Observer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/Name"
+            android:paddingLeft="3sp"
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
         <TextView
             android:id="@+id/StaffMan"
             android:layout_width="wrap_content"
@@ -35,6 +37,7 @@
             android:layout_alignLeft="@+id/Observer"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/Observer"
+            android:paddingLeft="3sp"
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -42,9 +45,9 @@
             android:id="@+id/Type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/StaffMan"
             android:layout_below="@+id/Name"
             android:layout_centerHorizontal="true"
+            android:capitalize="words"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -52,8 +55,8 @@
             android:id="@+id/Date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/StaffMan"
             android:layout_alignParentLeft="true"
+            android:layout_below="@+id/Name"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 

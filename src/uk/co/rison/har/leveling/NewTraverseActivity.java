@@ -3,6 +3,7 @@ package uk.co.rison.har.leveling;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -55,8 +56,7 @@ public class NewTraverseActivity extends Activity{
 				String staffman = StaffmanInput.getText().toString();
 				
 				DatePicker DateInput = (DatePicker) findViewById(R.id.LevellingDate);
-				String survey_date = (String.valueOf(DateInput.getDayOfMonth()) +   String.valueOf(DateInput.getMonth()) + String.valueOf(DateInput.getYear()) );
-							
+				String survey_date = (addLeadingZero(DateInput.getDayOfMonth()) +   addLeadingZero(DateInput.getMonth()+1) + String.valueOf(DateInput.getYear()) );
 				String modified_date = String.valueOf(System.currentTimeMillis());
 							
 				mRowId = null;
@@ -84,5 +84,13 @@ public class NewTraverseActivity extends Activity{
 			}		
 		});
     } 
-        
+
+    public final static String addLeadingZero(final int target){
+    	if (target<10){
+    		return "0" + String.valueOf(target);
+    	}else{
+    		return String.valueOf(target);
+       	}
+    }
+    	    
 }

@@ -43,12 +43,25 @@ public class DisplayPointsActivity extends Activity {
 			Log.d("inserted",traverse.getString(traverse.getColumnIndexOrThrow(TraverseAdapter.KEY_NAME)));
 			mName.setText(traverse.getString(traverse.getColumnIndexOrThrow(TraverseAdapter.KEY_NAME)));
 			Log.d("test","is this caught");
-			mDate.setText(traverse.getString(traverse.getColumnIndexOrThrow(TraverseAdapter.KEY_SURVEYDATE)));
+			mDate.setText(addSlashesDate(traverse.getString(traverse.getColumnIndexOrThrow(TraverseAdapter.KEY_SURVEYDATE))));
 			mObserver.setText(traverse.getString(traverse.getColumnIndexOrThrow(TraverseAdapter.KEY_OBSERVER)));
-			mType.setText(traverse.getString(traverse.getColumnIndexOrThrow(TraverseAdapter.KEY_TYPE)));
+			mType.setText(asUpperCaseFirstChar(traverse.getString(traverse.getColumnIndexOrThrow(TraverseAdapter.KEY_TYPE))));
 			mStaffman.setText(traverse.getString(traverse.getColumnIndexOrThrow(TraverseAdapter.KEY_STAFFMAN)));
 			
 			
 		//}
 	}
+
+	public final static String asUpperCaseFirstChar(final String target) {
+
+	    return Character.toUpperCase(target.charAt(0))
+	            + (target.length() > 1 ? target.substring(1) : "");
+	}
+	
+	public final static String addSlashesDate(final String date){
+		Log.d("Date", date);
+		return date.substring(0, 2) + "/" + date.substring(2, 4) + "/" + date.substring(4, 8);
+	}
 }
+
+
