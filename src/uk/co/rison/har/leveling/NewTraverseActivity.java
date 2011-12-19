@@ -72,9 +72,6 @@ public class NewTraverseActivity extends Activity{
 						Intent i = new Intent(NewTraverseActivity.this,DisplayPointsActivity.class);
 						i.putExtras(b);
 						NewTraverseActivity.this.startActivity(i);
-						if (mDbHelper != null) {
-							mDbHelper.close();
-						}
 						finish();
 						
 					}
@@ -84,6 +81,13 @@ public class NewTraverseActivity extends Activity{
 			}		
 		});
     } 
+    
+    public void onDestroy(){
+    	super.onDestroy();
+    	if (mDbHelper != null) {
+			mDbHelper.close();
+		}
+    }
 
     public final static String addLeadingZero(final int target){
     	if (target<10){
