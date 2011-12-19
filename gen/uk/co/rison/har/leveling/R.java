@@ -15,13 +15,13 @@ public final class R {
         public static final int notebook_icon=0x7f020001;
     }
     public static final class id {
-        public static final int Date=0x7f060004;
+        public static final int Date=0x7f060005;
         public static final int LevellingDate=0x7f060018;
         public static final int Name=0x7f060001;
-        public static final int Observer=0x7f060002;
-        public static final int StaffMan=0x7f060003;
+        public static final int Observer=0x7f060003;
+        public static final int StaffMan=0x7f060004;
         public static final int TraverseInfo=0x7f060019;
-        public static final int Type=0x7f060005;
+        public static final int Type=0x7f060002;
         public static final int item1=0x7f06001a;
         public static final int new_transverse=0x7f060007;
         public static final int observer=0x7f060014;

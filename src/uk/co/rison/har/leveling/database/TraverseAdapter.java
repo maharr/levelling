@@ -28,13 +28,13 @@ public class TraverseAdapter {
 		public TraverseAdapter open() throws SQLException {
 			dbHelper = new TraverseDatabaseHelper(context);
 			db = dbHelper.getWritableDatabase();
-			Log.d("database Opened ", "BY UNKONWN");
+			Log.d("Database Opened ", this.toString());
 			return this;
 		}
 
 		public void close() {
 			dbHelper.close();
-			Log.d("database closed", "BY UNKONWN");
+			Log.d("Database Closed", this.toString());
 		}
 
 		
