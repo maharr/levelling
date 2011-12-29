@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class LevellingActivity extends Activity {
@@ -21,6 +22,15 @@ public class LevellingActivity extends Activity {
         	}
         	
        });
+       Button addOb = (Button) findViewById(R.id.addObsText);
+       addOb.setOnClickListener(new View.OnClickListener() {
+		
+		public void onClick(View v) {
+			Intent ii = new Intent(LevellingActivity.this,AddObservationsActivity.class);
+    		LevellingActivity.this.startActivity(ii);  
+		}
+	});
+        
         
     }
     

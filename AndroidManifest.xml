@@ -19,6 +19,7 @@
         </activity>
         <activity android:name="NewTraverseActivity"></activity>
         <activity android:name="DisplayPointsActivity"></activity>
+        <activity android:name="AddObservationsActivity"></activity>
     </application>
 
 </manifest>
