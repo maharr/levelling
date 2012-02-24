@@ -8,6 +8,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class AddObservationsActivity extends Activity {
 	
@@ -17,11 +19,19 @@ public class AddObservationsActivity extends Activity {
         final Drawable dBS = findViewById(R.id.BS).getBackground();
         final Drawable dIS = findViewById(R.id.IS).getBackground(); 
         final Drawable dFS = findViewById(R.id.FS).getBackground(); 
+        final Integer Obsnumber = 1;
+        
                 
         Button BS = (Button) findViewById(R.id.BS);
         Button IS = (Button) findViewById(R.id.IS);
         Button FS = (Button) findViewById(R.id.FS);
         final PorterDuffColorFilter filter = new PorterDuffColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP); 
+        dBS.setColorFilter(filter);
+        
+        //LinearLayout Lay = (LinearLayout) findViewById(R.id.linearLayout1);
+        //Lay.inflate(context, R.id.BS, this);
+        TextView ObserveNumber = (TextView) findViewById(R.id.ObservationNumber);
+        ObserveNumber.setText("Observation Number " + Obsnumber.toString());
         
         BS.setOnClickListener(new View.OnClickListener() {
 			

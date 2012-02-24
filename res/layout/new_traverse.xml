@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-       
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/tableLayout1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
         <requestFocus />
-        
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="8sp"
             android:text="Traverse Name*"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:paddingTop="8sp" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
             android:id="@+id/traverseName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textCapWords" >
-
-        
         </EditText>
 
         <TextView
@@ -32,9 +31,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:paddingTop="20sp"
             android:text="Traverse Type*"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:paddingTop="20sp" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RadioGroup
             android:id="@+id/traverseType"
@@ -45,9 +44,9 @@
                 android:id="@+id/travClosed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Closed"
-                android:checked="true" />
-            
+                android:checked="true"
+                android:text="Closed" />
+
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
@@ -60,14 +59,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Open" />
-            
+
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Starting at a know point to an Unkown point, with no link back"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
-            
+
             <RadioButton
                 android:id="@+id/travCompound"
                 android:layout_width="wrap_content"
@@ -79,33 +78,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Between 2 Known Points"
-                android:textAppearance="?android:attr/textAppearanceSmall"/>
-
+                android:textAppearance="?android:attr/textAppearanceSmall" />
         </RadioGroup>
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="20sp"
             android:text="Observer"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:paddingTop="20sp" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
             android:id="@+id/observer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textCapWords|textPersonName" >
-
         </EditText>
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="20sp"
             android:text="Staff Man"
-            android:textAppearance="?android:attr/textAppearanceLarge" 
-            android:paddingTop="20sp"/>
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
             android:id="@+id/staffman"
@@ -117,22 +114,23 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="20sp"
             android:text="Survey Date*"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:paddingTop="20sp" />
-
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
         <DatePicker
             android:id="@+id/LevellingDate"
+            style="@style/styleName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="20sp" />
+            android:calendarViewShown="false"
+            android:spinnersShown="true" />
 
         <Button
             android:id="@+id/TraverseInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create"/>
-
+            android:text="Create" />
     </TableLayout>
-    </ScrollView>
-   
+
+</ScrollView>
