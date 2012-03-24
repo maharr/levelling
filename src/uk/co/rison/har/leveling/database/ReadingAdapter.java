@@ -43,8 +43,8 @@ public class ReadingAdapter {
 		 * rowId for that note, otherwise return a -1 to indicate failure.
 		 */
 
-		public long createReading(String name, String type, String observer, String staffman, String survey_date, String modified_date) {
-			ContentValues values = createContentValues(name, type, observer, staffman, survey_date, modified_date);
+		public long createReading(String traverse, String observation, String type, String reading, String label, String modified_date) {
+			ContentValues values = createContentValues(traverse, observation, type, reading, label, modified_date);
 
 			return db.insert(DB_TABLE, null, values);
 		}
@@ -52,8 +52,8 @@ public class ReadingAdapter {
 		 * Update the todo
 		 */
 
-		public boolean updateReading(long rowId, String name, String type, String observer, String staffman, String survey_date, String modified_date) {
-			ContentValues values = createContentValues(name, type, observer, staffman, survey_date, modified_date);
+		public boolean updateReading(long rowId, String traverse, String observation, String type, String reading, String label, String modified_date) {
+			ContentValues values = createContentValues(traverse, observation, type, reading, label, modified_date);
 
 			return db.update(DB_TABLE, values, KEY_ROWID + "=" + rowId, null) > 0;
 		}
