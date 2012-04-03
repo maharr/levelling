@@ -10,8 +10,8 @@ public class ReadingTable {
                 + "_id" + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "traverse" + " INTEGER NOT NULL, "
                 + "observation" + " INTEGER NOT NULL, "
-                + "type" + " TEXT NOT NULL, "
-                + "reading" + " INTEGER NOT NULL, "
+                + "type" + " INTEGER NOT NULL, "
+                + "reading" + " DOUBLE NOT NULL, "
                 + "label" + " TEXT NOT NULL, "
                 + "modified_date" + " TEXT NOT NULL );";
 

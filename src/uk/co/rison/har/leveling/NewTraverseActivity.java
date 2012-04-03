@@ -57,10 +57,7 @@ public class NewTraverseActivity extends Activity{
 				
 				DatePicker DateInput = (DatePicker) findViewById(R.id.LevellingDate);
 				String survey_date = (addLeadingZero(DateInput.getDayOfMonth()) +   addLeadingZero(DateInput.getMonth()+1) + String.valueOf(DateInput.getYear()) );
-				String modified_date = String.valueOf(System.currentTimeMillis());
-							
-				mRowId = null;
-				
+				String modified_date = String.valueOf(System.currentTimeMillis());		
 				
 				if (name != null){
 					

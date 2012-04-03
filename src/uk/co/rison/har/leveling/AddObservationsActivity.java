@@ -1,27 +1,38 @@
 package uk.co.rison.har.leveling;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+import uk.co.rison.har.leveling.database.ReadingAdapter;
+
 
 public class AddObservationsActivity extends Activity {
-	
+	public int current;	
+	private ReadingAdapter mDbHelper;
+	private Long mRowId;
+	public final Integer traverse = 1;
+	public final Integer observation = 1;
 	public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
+    	mDbHelper = new ReadingAdapter(this);
+		mDbHelper.open();
         setContentView(R.layout.add_observation);
         final Drawable dBS = findViewById(R.id.BS).getBackground();
         final Drawable dIS = findViewById(R.id.IS).getBackground(); 
         final Drawable dFS = findViewById(R.id.FS).getBackground(); 
-        final Integer Obsnumber = 1;
+        current = 1;
         
-                
+        Button save = (Button) findViewById(R.id.saveButton);        
         Button BS = (Button) findViewById(R.id.BS);
         Button IS = (Button) findViewById(R.id.IS);
         Button FS = (Button) findViewById(R.id.FS);
@@ -31,11 +42,20 @@ public class AddObservationsActivity extends Activity {
         //LinearLayout Lay = (LinearLayout) findViewById(R.id.linearLayout1);
         //Lay.inflate(context, R.id.BS, this);
         TextView ObserveNumber = (TextView) findViewById(R.id.ObservationNumber);
-        ObserveNumber.setText("Observation Number " + Obsnumber.toString());
+        ObserveNumber.setText("Observation Number " + observation.toString());
+        
+        save.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				saveData(current);
+			}
+		});
         
         BS.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
+				current = 1;
+				displayData(1);
 				dBS.setColorFilter(filter);
 		        findViewById(R.id.IS).invalidateDrawable(dIS);
 		        dIS.clearColorFilter();
@@ -47,6 +67,8 @@ public class AddObservationsActivity extends Activity {
         IS.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
+				current = 2;
+				displayData(2);
 				dIS.setColorFilter(filter);
 		        findViewById(R.id.BS).invalidateDrawable(dBS);
 		        dBS.clearColorFilter();
@@ -58,6 +80,8 @@ public class AddObservationsActivity extends Activity {
         FS.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
+				current = 3;
+				displayData(3);
 				dFS.setColorFilter(filter);
 		        findViewById(R.id.BS).invalidateDrawable(dBS);
 		        dBS.clearColorFilter();
@@ -70,6 +94,69 @@ public class AddObservationsActivity extends Activity {
         
         
 	}
+	public void displayData(int reading){
+		
+	}
+	
+	
+	public void saveData(Integer type){
+		//Get Valve
+		EditText val = (EditText) findViewById(R.id.reading);
+		Log.d("value first time", val.getText().toString());
+		Double value = Double.parseDouble(val.getText().toString());
+		Log.d("value", val.getText().toString());
+		//Get Label
+		EditText lab = (EditText) findViewById(R.id.label);
+		String label = lab.getText().toString();
+		//Get Current Time
+		String modified_date = String.valueOf(System.currentTimeMillis());	
+		mRowId = null;
+		boolean duplicate=false;
+		if (type != 2){
+			duplicate = mDbHelper.checkDuplicate(traverse,observation,type);
+		}			
+		
+		if (value != null || label != null){
+			if (duplicate == true ){
+				long id = mDbHelper.idDuplicate(traverse,observation,type);
+				boolean update = mDbHelper.updateReading(id,traverse,observation,type,value,label,modified_date);
+				if (update == true) {
+					mRowId = id;
+					/*Bundle b = new Bundle();
+					b.putLong("message", mRowId);
+					Intent i = new Intent(NewTraverseActivity.this,DisplayPointsActivity.class);
+					i.putExtras(b);
+					NewTraverseActivity.this.startActivity(i);
+					finish();
+					*/
+					Toast.makeText(getApplicationContext(), "Reading Number " + Long.toString(id) + " Updated", Toast.LENGTH_LONG).show();
+				
+				}	
+				
+				Toast.makeText(getApplicationContext(), "Already Stored", Toast.LENGTH_LONG).show();
+			}else{
+				long id = mDbHelper.createReading(traverse,observation,type,value,label,modified_date);
+				if (id > 0) {
+					mRowId = id;
+					/*Bundle b = new Bundle();
+					b.putLong("message", mRowId);
+					Intent i = new Intent(NewTraverseActivity.this,DisplayPointsActivity.class);
+					i.putExtras(b);
+					NewTraverseActivity.this.startActivity(i);
+					finish();
+					*/
+					Toast.makeText(getApplicationContext(), "Reading Number " + Long.toString(id) , Toast.LENGTH_LONG).show();
+				
+				}	
+	
+			}
+			
+		}else{
+			Toast.makeText(getApplicationContext(), "Please Fill In Value and Label", Toast.LENGTH_LONG).show();
+		}	
+
+	}
 
 }
+
 

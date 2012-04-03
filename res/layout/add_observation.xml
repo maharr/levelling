@@ -86,13 +86,14 @@
         android:layout_height="wrap_content"
         android:text="Reading"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/reading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number" >
-        
+        android:inputType="number|numberDecimal"
+        android:singleLine="true" >
+
     </EditText>
 
     <TextView
@@ -101,10 +102,18 @@
         android:layout_height="wrap_content"
         android:text="Point Label"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/label"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:inputType="textCapCharacters"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save" />
 
 </LinearLayout>
