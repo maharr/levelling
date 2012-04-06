@@ -69,6 +69,10 @@ public final class R {
         public static final int hello=0x7f040000;
     }
     public static final class style {
+        /**  Any customizations for your app running on pre-3.0 devices here 
+ Any customizations for your app running on devices with Theme.Holo here 
+         */
+        public static final int MyTheme=0x7f050001;
         public static final int styleName=0x7f050000;
     }
 }
