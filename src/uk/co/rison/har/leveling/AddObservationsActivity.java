@@ -2,6 +2,7 @@ package uk.co.rison.har.leveling;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -100,19 +101,31 @@ public class AddObservationsActivity extends Activity {
         
 	}
 	public void displayData(int reading){
+		ListView listView = (ListView) findViewById(R.id.mylist);
 		if (reading == 2){
-					
-			ListView listView = (ListView) findViewById(R.id.mylist);
-			String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-				"Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-				"Linux", "OS/2" };
-	
+			Cursor cursor = mDbHelper.fetchISReadings(traverse,observation);		
+			String[] readingsIS = new String[cursor.getCount()];
+			Long  [] idIS = new Long[cursor.getCount()];
+			int i;
+			for (i=0; i<cursor.getCount(); i++) {
+				  	
+					if (cursor.isLast()){
+						break;
+					}else{
+						cursor.moveToNext();
+						idIS[i] = cursor.getLong(0);
+						readingsIS[i] = Double.toString(cursor.getDouble(4));
+						//readingsIS[i][2] = cursor.getString(5);
+					}
+						  
+				}
+			
 			// First paramenter - Context
 			// Second parameter - Layout for the row
 			// Third parameter - ID of the View to which the data is written
 			// Forth - the Array of data
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, android.R.id.text1, values);
+				android.R.layout.simple_list_item_1, android.R.id.text1, readingsIS);
 	
 			// Assign adapter to ListView
 			listView.setAdapter(adapter);
@@ -127,7 +140,15 @@ public class AddObservationsActivity extends Activity {
 			}
 			});
 			
-		}	
+		}else{
+			String[] empty = new String [] {"Nothing Here!"}; 
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+					android.R.layout.simple_list_item_1, android.R.id.text1, empty);
+		
+				// Assign adapter to ListView
+				listView.setAdapter(adapter);
+			
+		}
 		
 	}
 	
@@ -185,7 +206,11 @@ public class AddObservationsActivity extends Activity {
 			
 		}else{
 			Toast.makeText(getApplicationContext(), "Please Fill In Value and Label", Toast.LENGTH_SHORT).show();
-		}	
+		}
+		
+		if (type == 2){
+			displayData(2);
+		}
 
 	}
 

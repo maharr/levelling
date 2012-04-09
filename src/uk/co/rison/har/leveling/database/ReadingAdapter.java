@@ -69,6 +69,18 @@ public class ReadingAdapter {
 
 		
 		/**
+		 * Return a Cursor over the list of all readings that have already been taken for the IS
+		 * 
+		 * @return Cursor over all readings
+		 */
+
+		public Cursor fetchISReadings(Integer traverse, Integer observation) {
+			return db.query(DB_TABLE, new String[] { KEY_ROWID, KEY_TRAVERSE,
+					KEY_OBSERVATION, KEY_TYPE, KEY_READING, KEY_LABEL, KEY_MODIFIEDDATE },KEY_TRAVERSE + "="
+							+ traverse +" AND " + KEY_OBSERVATION + "=" + observation, null, null, null, null, null);
+		}
+		
+		/**
 		 * Return a Cursor over the list of all reading in the database
 		 * 
 		 * @return Cursor over all readings
