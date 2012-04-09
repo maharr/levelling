@@ -39,7 +39,7 @@ public class ReadingAdapter {
 
 		
 		/**
-		 * Create a new todo If the todo is successfully created return the new
+		 * Create a new reading If the reading is successfully created return the new
 		 * rowId for that note, otherwise return a -1 to indicate failure.
 		 */
 
@@ -49,7 +49,7 @@ public class ReadingAdapter {
 			return db.insert(DB_TABLE, null, values);
 		}
 		/**
-		 * Update the todo
+		 * Update the reading, returns true or false based on whether the update was sucessful
 		 */
 
 		public boolean updateReading(long rowId, Integer traverse, Integer observation, Integer type, Double reading, String label, String modified_date) {
@@ -60,7 +60,7 @@ public class ReadingAdapter {
 
 		
 		/**
-		 * Deletes todo
+		 * Deletes reading, returns true or false based on whether the update was sucessful
 		 */
 
 		public boolean deleteReading(long rowId) {
@@ -69,9 +69,9 @@ public class ReadingAdapter {
 
 		
 		/**
-		 * Return a Cursor over the list of all todo in the database
+		 * Return a Cursor over the list of all reading in the database
 		 * 
-		 * @return Cursor over all notes
+		 * @return Cursor over all readings
 		 */
 
 		public Cursor fetchAllReadings() {
@@ -81,7 +81,7 @@ public class ReadingAdapter {
 
 		
 		/**
-		 * Return a Cursor positioned at the defined todo
+		 * Check if there is already a reading taken of the given type at the observation point
 		 */
 
 		public boolean checkDuplicate(Integer traverse, Integer observation, Integer type) throws SQLException {
@@ -93,6 +93,10 @@ public class ReadingAdapter {
 			}
 			return false;
 		}
+		
+		/**
+		 * Return the id for of the reading that has already been taken matching the type and observation
+		 */
 		
 		public long idDuplicate(Integer traverse, Integer observation, Integer type) throws SQLException {
 			Cursor mCursor = db.query(DB_TABLE, new String[] { KEY_ROWID, KEY_TRAVERSE,
