@@ -19,14 +19,14 @@ public class ReadingAdapter {
 		private static final String DB_TABLE = "reading";
 		private Context context;
 		private SQLiteDatabase db;
-		private ReadingDatabaseHelper dbHelper;
+		private TraverseDatabaseHelper dbHelper;
 
 		public ReadingAdapter(Context context) {
 			this.context = context;
 		}
 
 		public ReadingAdapter open() throws SQLException {
-			dbHelper = new ReadingDatabaseHelper(context);
+			dbHelper = new TraverseDatabaseHelper(context);
 			db = dbHelper.getWritableDatabase();
 			Log.d("Database Opened ", this.toString());
 			return this;
