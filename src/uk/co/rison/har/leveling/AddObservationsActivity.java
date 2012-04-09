@@ -9,8 +9,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import uk.co.rison.har.leveling.database.ReadingAdapter;
@@ -30,7 +33,7 @@ public class AddObservationsActivity extends Activity {
         final Drawable dBS = findViewById(R.id.BS).getBackground();
         final Drawable dIS = findViewById(R.id.IS).getBackground(); 
         final Drawable dFS = findViewById(R.id.FS).getBackground(); 
-        current = 1;
+        current = 1;      
         
         Button save = (Button) findViewById(R.id.saveButton);        
         Button BS = (Button) findViewById(R.id.BS);
@@ -74,6 +77,8 @@ public class AddObservationsActivity extends Activity {
 		        dBS.clearColorFilter();
 		        findViewById(R.id.FS).invalidateDrawable(dFS);
 				dFS.clearColorFilter();
+				
+						
 			}
 		});
         
@@ -95,6 +100,34 @@ public class AddObservationsActivity extends Activity {
         
 	}
 	public void displayData(int reading){
+		if (reading == 2){
+					
+			ListView listView = (ListView) findViewById(R.id.mylist);
+			String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+				"Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+				"Linux", "OS/2" };
+	
+			// First paramenter - Context
+			// Second parameter - Layout for the row
+			// Third parameter - ID of the View to which the data is written
+			// Forth - the Array of data
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, android.R.id.text1, values);
+	
+			// Assign adapter to ListView
+			listView.setAdapter(adapter);
+			
+			
+			listView.setOnItemClickListener(new ListView.OnItemClickListener() {
+				
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			Toast.makeText(getApplicationContext(),
+				"Click ListItem Number " + position, Toast.LENGTH_LONG)
+				.show();
+			}
+			});
+			
+		}	
 		
 	}
 	
@@ -129,11 +162,10 @@ public class AddObservationsActivity extends Activity {
 					NewTraverseActivity.this.startActivity(i);
 					finish();
 					*/
-					Toast.makeText(getApplicationContext(), "Reading Number " + Long.toString(id) + " Updated", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "Reading Number " + Long.toString(id) + " Updated", Toast.LENGTH_SHORT).show();
 				
 				}	
 				
-				Toast.makeText(getApplicationContext(), "Already Stored", Toast.LENGTH_LONG).show();
 			}else{
 				long id = mDbHelper.createReading(traverse,observation,type,value,label,modified_date);
 				if (id > 0) {
@@ -145,14 +177,14 @@ public class AddObservationsActivity extends Activity {
 					NewTraverseActivity.this.startActivity(i);
 					finish();
 					*/
-					Toast.makeText(getApplicationContext(), "Reading Number " + Long.toString(id) , Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "Reading Number " + Long.toString(id) , Toast.LENGTH_SHORT).show();
 				
 				}	
 	
 			}
 			
 		}else{
-			Toast.makeText(getApplicationContext(), "Please Fill In Value and Label", Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), "Please Fill In Value and Label", Toast.LENGTH_SHORT).show();
 		}	
 
 	}
