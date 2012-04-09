@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 public class TraverseTable {
+	//Table for storing the information about each individual traverse
 	private static final String TRAVERSE_TABLE_NAME = "traverse";
     private static final String TRAVERSE_TABLE_CREATE =
                 "CREATE TABLE " + TRAVERSE_TABLE_NAME + " (" 
@@ -14,9 +15,21 @@ public class TraverseTable {
                 + "staffman" + " TEXT, "
                 + "survey_date" + " TEXT NOT NULL, "
                 + "modified_date" + " TEXT NOT NULL );";
+    //Table for storing the readings from each observation
+    private static final String READING_TABLE_NAME = "reading";
+    private static final String READING_TABLE_CREATE =
+                "CREATE TABLE " + READING_TABLE_NAME + " (" 
+                + "_id" + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "traverse" + " INTEGER NOT NULL, "
+                + "observation" + " INTEGER NOT NULL, "
+                + "type" + " INTEGER NOT NULL, "
+                + "reading" + " DOUBLE NOT NULL, "
+                + "label" + " TEXT NOT NULL, "
+                + "modified_date" + " TEXT NOT NULL );";
 
     public static void onCreate(SQLiteDatabase database) {
         database.execSQL(TRAVERSE_TABLE_CREATE);
+        database.execSQL(READING_TABLE_CREATE);
     }
     
 	public static void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
