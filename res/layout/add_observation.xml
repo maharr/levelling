@@ -51,14 +51,13 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/eReading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reading"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     <EditText
-        android:id="@+id/reading"
+        android:id="@+id/eReadingEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number|numberDecimal"
@@ -67,29 +66,38 @@
     </EditText>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/eLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Point Label"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/label"
+        android:id="@+id/elabelEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textCapCharacters"
         android:singleLine="true" />
-
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save" />
-    
-    <ListView
-        android:id="@+id/mylist"
+  		<RelativeLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-    </ListView>
+    
+	    <ListView
+	        android:id="@+id/mylist"
+	        android:layout_width="match_parent"
+	        android:layout_height="153dp"
+	        android:layout_above="@+id/saveButton"
+	        android:layout_alignParentTop="true" >
+	
+	    </ListView>
+	
+	    <Button
+	        android:id="@+id/saveButton"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true"
+	        android:text="Save" />
+    </RelativeLayout>
 
 </LinearLayout>

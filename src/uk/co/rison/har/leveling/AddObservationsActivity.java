@@ -1,6 +1,8 @@
 package uk.co.rison.har.leveling;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -114,8 +116,8 @@ public class AddObservationsActivity extends Activity {
 					}else{
 						cursor.moveToNext();
 						idIS[i] = cursor.getLong(0);
-						readingsIS[i] = Double.toString(cursor.getDouble(4));
-						//readingsIS[i][2] = cursor.getString(5);
+						readingsIS[i] = cursor.getString(5) + " - " + Double.toString(cursor.getDouble(4));
+						
 					}
 						  
 				}
@@ -134,7 +136,18 @@ public class AddObservationsActivity extends Activity {
 			listView.setOnItemClickListener(new ListView.OnItemClickListener() {
 				
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			Toast.makeText(getApplicationContext(),
+			
+				Context mContext = getApplicationContext();
+				Dialog dialog = new Dialog(mContext);
+
+				dialog.setContentView(R.layout.edit_observation);
+				dialog.setTitle("Edit Observation");
+
+				EditText reading = (EditText) dialog.findViewById(R.id.eReadingEdit);
+				reading.setText("something");
+				
+				
+				Toast.makeText(getApplicationContext(),
 				"Click ListItem Number " + position, Toast.LENGTH_LONG)
 				.show();
 			}
