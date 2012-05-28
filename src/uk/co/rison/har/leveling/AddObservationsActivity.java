@@ -1,5 +1,6 @@
 package uk.co.rison.har.leveling;
 
+import android.R.color;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -8,15 +9,21 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 import uk.co.rison.har.leveling.database.ReadingAdapter;
@@ -136,17 +143,9 @@ public class AddObservationsActivity extends Activity {
 			listView.setOnItemClickListener(new ListView.OnItemClickListener() {
 				
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			
-				Context mContext = getApplicationContext();
-				Dialog dialog = new Dialog(mContext);
-
-				dialog.setContentView(R.layout.edit_observation);
-				dialog.setTitle("Edit Observation");
-
-				EditText reading = (EditText) dialog.findViewById(R.id.eReadingEdit);
-				reading.setText("something");
 				
-				
+				showPopupMenu(view);
+		        
 				Toast.makeText(getApplicationContext(),
 				"Click ListItem Number " + position, Toast.LENGTH_LONG)
 				.show();
@@ -165,15 +164,22 @@ public class AddObservationsActivity extends Activity {
 		
 	}
 	
+	public void showPopupMenu (View v){
+		LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		PopupWindow pw = new PopupWindow(inflater.inflate(R.layout.edit_observation, null, false),400,300, true);
+		pw.showAtLocation(this.findViewById(R.id.addObs), Gravity.CENTER, 0, 0);
+        
+	}
 	
+		
 	public void saveData(Integer type){
 		//Get Valve
-		EditText val = (EditText) findViewById(R.id.reading);
+		EditText val = (EditText) findViewById(R.id.eReadingEdit);
 		Log.d("value first time", val.getText().toString());
 		Double value = Double.parseDouble(val.getText().toString());
 		Log.d("value", val.getText().toString());
 		//Get Label
-		EditText lab = (EditText) findViewById(R.id.label);
+		EditText lab = (EditText) findViewById(R.id.elabelEdit);
 		String label = lab.getText().toString();
 		//Get Current Time
 		String modified_date = String.valueOf(System.currentTimeMillis());	
@@ -182,7 +188,7 @@ public class AddObservationsActivity extends Activity {
 		if (type != 2){
 			duplicate = mDbHelper.checkDuplicate(traverse,observation,type);
 		}			
-		
+		Log.d("Save Data","Opened");
 		if (value != null || label != null){
 			if (duplicate == true ){
 				long id = mDbHelper.idDuplicate(traverse,observation,type);

@@ -3,5 +3,6 @@
 
     <string name="hello">Hello World, LevelingActivity!</string>
     <string name="app_name">Land Surveyors Notebook</string>
+    <string name="editCol">BackColour</string>
 
 </resources>
