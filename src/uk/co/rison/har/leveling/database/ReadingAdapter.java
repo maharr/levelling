@@ -67,6 +67,21 @@ public class ReadingAdapter {
 			return db.delete(DB_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
 		}
 
+		/**
+		 * Return a Cursor over the list of all readings for current Observation
+		 * 
+		 * @return Cursor over all readings
+		 */
+
+		public Cursor fetchObservationReadings(Long traverse) {
+			return db.query(DB_TABLE, new String[] { KEY_ROWID, KEY_TRAVERSE,
+					KEY_OBSERVATION, KEY_TYPE, KEY_READING, KEY_LABEL, KEY_MODIFIEDDATE },KEY_TRAVERSE + "="
+							+ traverse , null, null, null, null, null);
+		}
+		
+		
+		
+		
 		
 		/**
 		 * Return a Cursor over the list of all readings that have already been taken for the IS
@@ -74,10 +89,10 @@ public class ReadingAdapter {
 		 * @return Cursor over all readings
 		 */
 
-		public Cursor fetchISReadings(Long traverse, Integer observation) {
+		public Cursor fetchISReadings(Long traverse, Integer observation, Integer type) {
 			return db.query(DB_TABLE, new String[] { KEY_ROWID, KEY_TRAVERSE,
 					KEY_OBSERVATION, KEY_TYPE, KEY_READING, KEY_LABEL, KEY_MODIFIEDDATE },KEY_TRAVERSE + "="
-							+ traverse +" AND " + KEY_OBSERVATION + "=" + observation, null, null, null, null, null);
+							+ traverse +" AND " + KEY_OBSERVATION + "=" + observation + " AND " + KEY_TYPE + "=" + type  , null, null, null, null, null);
 		}
 		
 		/**

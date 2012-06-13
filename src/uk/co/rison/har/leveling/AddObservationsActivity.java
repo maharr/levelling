@@ -115,7 +115,7 @@ public class AddObservationsActivity extends Activity {
 	public void displayData(int reading){
 		ListView listView = (ListView) findViewById(R.id.mylist);
 		if (reading == 2){
-			Cursor cursor = mDbHelper.fetchISReadings(traverse,observation);		
+			Cursor cursor = mDbHelper.fetchISReadings(traverse,observation,reading);		
 			String[] readingsIS = new String[cursor.getCount()];
 			Long  [] idIS = new Long[cursor.getCount()];
 			int i;
@@ -176,7 +176,7 @@ public class AddObservationsActivity extends Activity {
 		final EditText updateReading = (EditText) pw.getContentView().findViewById(R.id.editReadingpop);
 		final EditText updateLabel = (EditText) pw.getContentView().findViewById(R.id.editLabelpop);
 		Button updatePopup = (Button) pw.getContentView().findViewById(R.id.saveEdit);
-		Cursor cursor = mDbHelper.fetchISReadings(traverse,observation);
+		Cursor cursor = mDbHelper.fetchISReadings(traverse,observation,current);
 		cursor.move(pos+1);
 		String rdng = Double.toString(cursor.getDouble(4));
 		updateReading.setText(rdng);
@@ -191,7 +191,7 @@ public class AddObservationsActivity extends Activity {
 				//Get Current Time
 				String modified_date = String.valueOf(System.currentTimeMillis());
 				current = 2;
-				Cursor cursor = mDbHelper.fetchISReadings(traverse,observation);
+				Cursor cursor = mDbHelper.fetchISReadings(traverse,observation,current);
 				cursor.move(pos+1);
 				Long  idISpop = cursor.getLong(0);
 				//String labelISpop = cursor.getString(5);

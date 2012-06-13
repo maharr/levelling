@@ -6,8 +6,12 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import uk.co.rison.har.leveling.database.TraverseAdapter;
 import uk.co.rison.har.leveling.database.ReadingAdapter;
@@ -37,6 +41,7 @@ public class DisplayPointsActivity extends Activity {
 		mDBHelper = new ReadingAdapter(DisplayPointsActivity.this);
 		mDBHelper.open();
 		PopulatePage();
+		FillList();
         Log.d("message", "finish oncreate");
         Button newObserve = (Button) findViewById(R.id.addObserve);
         newObserve.setOnClickListener(new View.OnClickListener() {
@@ -57,9 +62,61 @@ public class DisplayPointsActivity extends Activity {
 		});
 	}
 	
-	public void onDestroy(){
+	protected void onDestroy(){
 		super.onDestroy();
 		
+	}
+	
+	protected void onResume(){
+		FillList();
+		super.onResume();
+	}
+	
+	public void FillList(){
+		ListView listView = (ListView) findViewById(R.id.obsList);
+		Cursor cursor = mDBHelper.fetchObservationReadings(mRowId);		
+		String[] Observations = new String[cursor.getCount()];
+		Log.d("Size", getString(cursor.getCount()));
+		int i,d=-1;
+		for (i=0; i<cursor.getCount(); i++) {
+			  	
+				if (cursor.isLast()){
+					break;
+				}else{
+					cursor.moveToNext();
+					Log.d("Cursor int", cursor.getString(2));								
+					if (d!=cursor.getInt(2)){
+						Log.d("Cursor int", cursor.getString(2));
+						Observations[i] = "Observation " + cursor.getString(2);
+					}
+					d = cursor.getInt(2);						
+				}
+					  
+			}
+		
+		// First paramenter - Context
+		// Second parameter - Layout for the row
+		// Third parameter - ID of the View to which the data is written
+		// Forth - the Array of data
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+			android.R.layout.simple_list_item_1, android.R.id.text1, Observations);
+
+		// Assign adapter to ListView
+		listView.setAdapter(adapter);
+		
+		
+		listView.setOnItemClickListener(new ListView.OnItemClickListener() {
+			
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			
+			//displayData(2);
+			//Log.d("Position",Integer.toString(position));
+			//pos = position;
+			//showPopupMenu(view);
+	        
+			Toast.makeText(getApplicationContext(),	"Click ListItem Number " + position, Toast.LENGTH_LONG).show();
+		}
+		});
 	}
 	
 	public void PopulatePage(){
