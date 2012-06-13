@@ -20,7 +20,7 @@ public class TraverseTable {
     private static final String READING_TABLE_CREATE =
                 "CREATE TABLE " + READING_TABLE_NAME + " (" 
                 + "_id" + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "traverse" + " INTEGER NOT NULL, "
+                + "traverse" + " LONG NOT NULL, "
                 + "observation" + " INTEGER NOT NULL, "
                 + "type" + " INTEGER NOT NULL, "
                 + "reading" + " DOUBLE NOT NULL, "

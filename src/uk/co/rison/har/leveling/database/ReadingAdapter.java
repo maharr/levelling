@@ -43,7 +43,7 @@ public class ReadingAdapter {
 		 * rowId for that note, otherwise return a -1 to indicate failure.
 		 */
 
-		public long createReading(Integer traverse, Integer observation, Integer type, Double reading, String label, String modified_date) {
+		public long createReading(Long traverse, Integer observation, Integer type, Double reading, String label, String modified_date) {
 			ContentValues values = createContentValues(traverse, observation, type, reading, label, modified_date);
 
 			return db.insert(DB_TABLE, null, values);
@@ -52,7 +52,7 @@ public class ReadingAdapter {
 		 * Update the reading, returns true or false based on whether the update was sucessful
 		 */
 
-		public boolean updateReading(long rowId, Integer traverse, Integer observation, Integer type, Double reading, String label, String modified_date) {
+		public boolean updateReading(long rowId, Long traverse, Integer observation, Integer type, Double reading, String label, String modified_date) {
 			ContentValues values = createContentValues(traverse, observation, type, reading, label, modified_date);
 
 			return db.update(DB_TABLE, values, KEY_ROWID + "=" + rowId, null) > 0;
@@ -74,7 +74,7 @@ public class ReadingAdapter {
 		 * @return Cursor over all readings
 		 */
 
-		public Cursor fetchISReadings(Integer traverse, Integer observation) {
+		public Cursor fetchISReadings(Long traverse, Integer observation) {
 			return db.query(DB_TABLE, new String[] { KEY_ROWID, KEY_TRAVERSE,
 					KEY_OBSERVATION, KEY_TYPE, KEY_READING, KEY_LABEL, KEY_MODIFIEDDATE },KEY_TRAVERSE + "="
 							+ traverse +" AND " + KEY_OBSERVATION + "=" + observation, null, null, null, null, null);
@@ -96,7 +96,7 @@ public class ReadingAdapter {
 		 * Check if there is already a reading taken of the given type at the observation point
 		 */
 
-		public boolean checkDuplicate(Integer traverse, Integer observation, Integer type) throws SQLException {
+		public boolean checkDuplicate(Long traverse, Integer observation, Integer type) throws SQLException {
 			Cursor mCursor = db.query(DB_TABLE, new String[] { KEY_ROWID, KEY_TRAVERSE,
 					KEY_OBSERVATION, KEY_TYPE, KEY_READING, KEY_LABEL, KEY_MODIFIEDDATE }, KEY_TRAVERSE + "="
 					+ traverse +" AND " + KEY_OBSERVATION + "=" + observation +" AND " + KEY_TYPE + "=" + type , null , null, null, null, null);
@@ -107,10 +107,23 @@ public class ReadingAdapter {
 		}
 		
 		/**
+		 * Return the id for the next observation
+		 */
+		
+		public Integer nextObservation(Long traverse) throws SQLException {
+			Cursor mCursor = db.query(DB_TABLE, new String[] { KEY_ROWID, KEY_TRAVERSE,
+					KEY_OBSERVATION, KEY_TYPE, KEY_READING, KEY_LABEL, KEY_MODIFIEDDATE }, KEY_TRAVERSE + "="
+					+ traverse , null , null, null, null, null);
+			
+				return  mCursor.getCount();
+			
+		}
+		
+		/**
 		 * Return the id for of the reading that has already been taken matching the type and observation
 		 */
 		
-		public long idDuplicate(Integer traverse, Integer observation, Integer type) throws SQLException {
+		public long idDuplicate(Long traverse, Integer observation, Integer type) throws SQLException {
 			Cursor mCursor = db.query(DB_TABLE, new String[] { KEY_ROWID, KEY_TRAVERSE,
 					KEY_OBSERVATION, KEY_TYPE, KEY_READING, KEY_LABEL, KEY_MODIFIEDDATE }, KEY_TRAVERSE + "="
 					+ traverse +" AND " + KEY_OBSERVATION + "=" + observation +" AND " + KEY_TYPE + "=" + type , null , null, null, null, null);
@@ -131,7 +144,7 @@ public class ReadingAdapter {
 			return mCursor;
 		}
 
-		private ContentValues createContentValues(Integer traverse, Integer observation, Integer type, Double reading, String label, String modified_date) {
+		private ContentValues createContentValues(Long traverse, Integer observation, Integer type, Double reading, String label, String modified_date) {
 			ContentValues values = new ContentValues();
 			values.put(KEY_TRAVERSE, traverse);
 			values.put(KEY_OBSERVATION, observation);

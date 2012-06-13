@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import uk.co.rison.har.leveling.database.TraverseAdapter;
+import uk.co.rison.har.leveling.database.ReadingAdapter;
 
 public class DisplayPointsActivity extends Activity {
 	private TextView mName;
@@ -18,6 +19,7 @@ public class DisplayPointsActivity extends Activity {
 	private TextView mType;
 	private TextView mStaffman;	
 	private TraverseAdapter dbHelper;
+	private ReadingAdapter mDBHelper;
 	private Long mRowId;
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,8 @@ public class DisplayPointsActivity extends Activity {
         Log.d("test","is this caught");
         dbHelper = new TraverseAdapter(DisplayPointsActivity.this);
 		dbHelper.open();
+		mDBHelper = new ReadingAdapter(DisplayPointsActivity.this);
+		mDBHelper.open();
 		PopulatePage();
         Log.d("message", "finish oncreate");
         Button newObserve = (Button) findViewById(R.id.addObserve);
@@ -39,11 +43,14 @@ public class DisplayPointsActivity extends Activity {
 			
 			public void onClick(View v) {
 				Bundle b = new Bundle();
-				b.putLong("message", mRowId);
+				b.putLong("rowid", mRowId);
+				//get next observation number
+				Integer observation = mDBHelper.nextObservation(mRowId);
+				b.putInt("observation", observation);
 				Intent i = new Intent(DisplayPointsActivity.this,AddObservationsActivity.class);
 				i.putExtras(b);
 				DisplayPointsActivity.this.startActivity(i);
-				finish();
+				//finish();
 				
 			}
 				
