@@ -1,6 +1,7 @@
 package uk.co.rison.har.leveling;
 
 import android.R.color;
+import android.R.string;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -21,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.PopupWindow;
@@ -33,8 +35,13 @@ public class AddObservationsActivity extends Activity {
 	public int current;	
 	private ReadingAdapter mDbHelper;
 	private Long mRowId;
+	FrameLayout layout_MainMenu;
+	private String ISLabel;
+	private double ISReading;
 	public final Integer traverse = 1;
 	public final Integer observation = 1;
+	public long pos;
+	
 	public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	mDbHelper = new ReadingAdapter(this);
@@ -43,7 +50,9 @@ public class AddObservationsActivity extends Activity {
         final Drawable dBS = findViewById(R.id.BS).getBackground();
         final Drawable dIS = findViewById(R.id.IS).getBackground(); 
         final Drawable dFS = findViewById(R.id.FS).getBackground(); 
-        current = 1;      
+        current = 1;
+        layout_MainMenu = (FrameLayout) findViewById( R.id.addObs);
+        layout_MainMenu.getForeground().setAlpha(0);
         
         Button save = (Button) findViewById(R.id.saveButton);        
         Button BS = (Button) findViewById(R.id.BS);
@@ -51,6 +60,7 @@ public class AddObservationsActivity extends Activity {
         Button FS = (Button) findViewById(R.id.FS);
         final PorterDuffColorFilter filter = new PorterDuffColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP); 
         dBS.setColorFilter(filter);
+        
         
         //LinearLayout Lay = (LinearLayout) findViewById(R.id.linearLayout1);
         //Lay.inflate(context, R.id.BS, this);
@@ -60,7 +70,7 @@ public class AddObservationsActivity extends Activity {
         save.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				saveData(current);
+				saveData(current,false);
 			}
 		});
         
@@ -124,7 +134,7 @@ public class AddObservationsActivity extends Activity {
 						cursor.moveToNext();
 						idIS[i] = cursor.getLong(0);
 						readingsIS[i] = cursor.getString(5) + " - " + Double.toString(cursor.getDouble(4));
-						
+												
 					}
 						  
 				}
@@ -144,11 +154,12 @@ public class AddObservationsActivity extends Activity {
 				
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				
+				displayData(2);
+				Log.d("Position",Integer.toString(position));
+				pos = id;
 				showPopupMenu(view);
 		        
-				Toast.makeText(getApplicationContext(),
-				"Click ListItem Number " + position, Toast.LENGTH_LONG)
-				.show();
+				Toast.makeText(getApplicationContext(),	"Click ListItem Number " + position, Toast.LENGTH_LONG).show();
 			}
 			});
 			
@@ -166,18 +177,64 @@ public class AddObservationsActivity extends Activity {
 	
 	public void showPopupMenu (View v){
 		LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		PopupWindow pw = new PopupWindow(inflater.inflate(R.layout.edit_observation, null, false),400,300, true);
+		final PopupWindow pw = new PopupWindow(inflater.inflate(R.layout.edit_observation, null, false),400,300, true);
+		pw.setFocusable(true);
 		pw.showAtLocation(this.findViewById(R.id.addObs), Gravity.CENTER, 0, 0);
+		layout_MainMenu.getForeground().setAlpha( 220); // dim
+		final EditText updateReading = (EditText) pw.getContentView().findViewById(R.id.editReadingpop);
+		final EditText updateLabel = (EditText) pw.getContentView().findViewById(R.id.editLabelpop);
+		Button updatePopup = (Button) pw.getContentView().findViewById(R.id.saveEdit);
+		String rdng = Double.toString(ISReading);
+		updateReading.setText(rdng);
+		updateLabel.setText(ISLabel);
+		updatePopup.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				//Get Valve
+				Double value = Double.parseDouble(updateReading.getText().toString());
+				//Get Label
+				String label = updateLabel.getText().toString();
+				//Get Current Time
+				String modified_date = String.valueOf(System.currentTimeMillis());
+				current = 2;
+				Cursor cursor = mDbHelper.fetchISReadings(traverse,observation);		
+				Long  [] idISpop = new Long[cursor.getCount()];
+				String [] labelISpop = new String[cursor.getCount()];
+				double [] readingISpop = new double[cursor.getCount()];
+				int i;
+				for (i=0; i<cursor.getCount(); i++) {
+					  	
+						if (cursor.isLast()){
+							break;
+						}else{
+							cursor.moveToNext();
+							idISpop[i] = cursor.getLong(0);
+							labelISpop[i] = cursor.getString(5);
+							readingISpop[i] = cursor.getDouble(4);
+																										
+						}
+							  
+					}
+				
+				Long popid = idISpop[(int)pos];
+				value = readingISpop[(int)pos];
+				label = labelISpop[(int)pos];
+				boolean sucess = mDbHelper.updateReading(popid,traverse,observation,current,value,label,modified_date);
+				layout_MainMenu.getForeground().setAlpha( 0); // dim
+				pw.dismiss();
+			}
+		
+		
+		});	
+		
         
 	}
 	
 		
-	public void saveData(Integer type){
+	public void saveData(Integer type, Boolean popup){
 		//Get Valve
 		EditText val = (EditText) findViewById(R.id.eReadingEdit);
-		Log.d("value first time", val.getText().toString());
 		Double value = Double.parseDouble(val.getText().toString());
-		Log.d("value", val.getText().toString());
 		//Get Label
 		EditText lab = (EditText) findViewById(R.id.elabelEdit);
 		String label = lab.getText().toString();
