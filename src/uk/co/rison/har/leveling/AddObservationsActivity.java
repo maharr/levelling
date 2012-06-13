@@ -40,7 +40,7 @@ public class AddObservationsActivity extends Activity {
 	private double ISReading;
 	public final Integer traverse = 1;
 	public final Integer observation = 1;
-	public long pos;
+	public int pos;
 	
 	public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
@@ -156,7 +156,7 @@ public class AddObservationsActivity extends Activity {
 				
 				displayData(2);
 				Log.d("Position",Integer.toString(position));
-				pos = id;
+				pos = position;
 				showPopupMenu(view);
 		        
 				Toast.makeText(getApplicationContext(),	"Click ListItem Number " + position, Toast.LENGTH_LONG).show();
@@ -167,7 +167,6 @@ public class AddObservationsActivity extends Activity {
 			String[] empty = new String [] {"Nothing Here!"}; 
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 					android.R.layout.simple_list_item_1, android.R.id.text1, empty);
-		
 				// Assign adapter to ListView
 				listView.setAdapter(adapter);
 			
@@ -184,9 +183,11 @@ public class AddObservationsActivity extends Activity {
 		final EditText updateReading = (EditText) pw.getContentView().findViewById(R.id.editReadingpop);
 		final EditText updateLabel = (EditText) pw.getContentView().findViewById(R.id.editLabelpop);
 		Button updatePopup = (Button) pw.getContentView().findViewById(R.id.saveEdit);
-		String rdng = Double.toString(ISReading);
+		Cursor cursor = mDbHelper.fetchISReadings(traverse,observation);
+		cursor.move(pos+1);
+		String rdng = Double.toString(cursor.getDouble(4));
 		updateReading.setText(rdng);
-		updateLabel.setText(ISLabel);
+		updateLabel.setText(cursor.getString(5));
 		updatePopup.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
@@ -197,31 +198,15 @@ public class AddObservationsActivity extends Activity {
 				//Get Current Time
 				String modified_date = String.valueOf(System.currentTimeMillis());
 				current = 2;
-				Cursor cursor = mDbHelper.fetchISReadings(traverse,observation);		
-				Long  [] idISpop = new Long[cursor.getCount()];
-				String [] labelISpop = new String[cursor.getCount()];
-				double [] readingISpop = new double[cursor.getCount()];
-				int i;
-				for (i=0; i<cursor.getCount(); i++) {
-					  	
-						if (cursor.isLast()){
-							break;
-						}else{
-							cursor.moveToNext();
-							idISpop[i] = cursor.getLong(0);
-							labelISpop[i] = cursor.getString(5);
-							readingISpop[i] = cursor.getDouble(4);
-																										
-						}
-							  
-					}
-				
-				Long popid = idISpop[(int)pos];
-				value = readingISpop[(int)pos];
-				label = labelISpop[(int)pos];
-				boolean sucess = mDbHelper.updateReading(popid,traverse,observation,current,value,label,modified_date);
+				Cursor cursor = mDbHelper.fetchISReadings(traverse,observation);
+				cursor.move(pos+1);
+				Long  idISpop = cursor.getLong(0);
+				//String labelISpop = cursor.getString(5);
+				//double readingISpop = cursor.getDouble(4);
+				boolean sucess = mDbHelper.updateReading(idISpop,traverse,observation,current,value,label,modified_date);
 				layout_MainMenu.getForeground().setAlpha( 0); // dim
 				pw.dismiss();
+				displayData(2);
 			}
 		
 		
