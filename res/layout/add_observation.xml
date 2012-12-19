@@ -4,108 +4,107 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:foreground="@drawable/shape_window_dim" >
-    
-<LinearLayout 
-    android:id="@+id/addObslin"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/ObservationNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout1"
+    <LinearLayout
+        android:id="@+id/addObslin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/IS"
+        <TextView
+            android:id="@+id/ObservationNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:text="    IS    " />
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <Button
-            android:id="@+id/BS"
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/IS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="    IS    " />
+
+            <Button
+                android:id="@+id/BS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="24dp"
+                android:layout_toLeftOf="@+id/IS"
+                android:text="    BS    " />
+
+            <Button
+                android:id="@+id/FS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="24dp"
+                android:layout_toRightOf="@+id/IS"
+                android:text="    FS    " />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/eReading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="24dp"
-            android:layout_toLeftOf="@+id/IS"
-            android:text="    BS    " />
+            android:text="Reading"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <Button
-            android:id="@+id/FS"
+        <EditText
+            android:id="@+id/eReadingEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number|numberDecimal"
+            android:singleLine="true" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/eLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="24dp"
-            android:layout_toRightOf="@+id/IS"
-            android:text="    FS    " />
+            android:text="Point Label"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    </RelativeLayout>
+        <EditText
+            android:id="@+id/elabelEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapCharacters"
+            android:singleLine="true" />
 
-    <TextView
-        android:id="@+id/eReading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reading"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-    <EditText
-        android:id="@+id/eReadingEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number|numberDecimal"
-        android:singleLine="true" >
+        <RelativeLayout
+            android:id="@+id/relativeLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-    </EditText>
+            <ListView
+                android:id="@+id/mylist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/saveButton"
+                android:layout_alignParentTop="true" >
+            </ListView>
 
-    <TextView
-        android:id="@+id/eLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Point Label"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/elabelEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textCapCharacters"
-        android:singleLine="true" />
-  		<RelativeLayout
-        android:id="@+id/relativeLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    
-	    <ListView
-	        android:id="@+id/mylist"
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
-	        android:layout_above="@+id/saveButton"
-	        android:layout_alignParentTop="true" >
-	
-	    </ListView>
-	
-	    <Button
-	        android:id="@+id/saveButton"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentBottom="true"
-	        android:text="Save" />
-    </RelativeLayout>
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="Save" />
+        </RelativeLayout>
+    </LinearLayout>
 
-</LinearLayout>
 </FrameLayout>

@@ -60,7 +60,7 @@ public class ReadingAdapter {
 
 		
 		/**
-		 * Deletes reading, returns true or false based on whether the update was sucessful
+		 * Deletes reading, returns true or false based on whether the update was successful
 		 */
 
 		public boolean deleteReading(long rowId) {
@@ -77,9 +77,8 @@ public class ReadingAdapter {
 			return db.query(DB_TABLE, new String[] { KEY_ROWID, KEY_TRAVERSE,
 					KEY_OBSERVATION, KEY_TYPE, KEY_READING, KEY_LABEL, KEY_MODIFIEDDATE },KEY_TRAVERSE + "="
 							+ traverse , null, null, null, null, null);
+			
 		}
-		
-		
 		
 		
 		

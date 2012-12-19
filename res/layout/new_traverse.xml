@@ -117,7 +117,7 @@
             android:paddingTop="20sp"
             android:text="Survey Date*"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
         <DatePicker
             android:id="@+id/LevellingDate"
             style="@style/styleName"

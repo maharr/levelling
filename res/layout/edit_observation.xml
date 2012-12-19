@@ -3,8 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    
-	<TextView
+
+    <TextView
         android:id="@+id/Reading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:inputType="number|numberDecimal"
         android:singleLine="true" >
-
     </EditText>
 
     <TextView
@@ -27,19 +26,17 @@
         android:text="Point Label"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-
-
     <EditText
         android:id="@+id/editLabelpop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textCapCharacters"
         android:singleLine="true" />
-
+
     <Button
         android:id="@+id/saveEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save" />
-    
+
 </LinearLayout>
