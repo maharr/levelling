@@ -1,5 +1,7 @@
 package uk.co.rison.har.leveling;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -75,25 +77,27 @@ public class DisplayPointsActivity extends Activity {
 	}
 
 	public void FillList() {
-		// Log.d("Start", "Fill List");
+		// Define List
 		ListView listView = (ListView) findViewById(R.id.obsList);
+		// Retrive Readings from DB
 		Cursor cursor = mDBHelper.fetchObservationReadings(mRowId);
-		Log.d("Number of Rows", Integer.toString(cursor.getCount()));
-		String[] Observations = new String[cursor.getCount()];
-		Log.d("message", "finish oncreate2");
+		// Use ArrayList as Size is not yet known
+		ArrayList<String> ObservationsList = new ArrayList<String>();
+		// Fill array list with number of observations completed
 		if (cursor.moveToFirst() != false) {
 			int i, d = -1;
-			Log.d("message", "finish oncreate3");
 			for (i = 0; i < cursor.getCount(); i++) {
-
-				if (d != cursor.getInt(2)) {
-					Log.d("Cursor int", Integer.toString(cursor.getInt(2)));
-					Observations[i] = "Observation " + cursor.getString(2);
-					d = cursor.getInt(2);
+				cursor.moveToPosition(i);
+				if (d != cursor.getInt(2) && d <= cursor.getInt(2)) {
+					ObservationsList.add("Observations " + cursor.getString(2));
 				}
+				d = cursor.getInt(2);
 			}
 		}
-		/*// First paramenter - Context
+		// Convert ArrayList into Array
+		String[] Observations = new String[ObservationsList.size()];
+		Observations = ObservationsList.toArray(Observations);
+		// First paramenter - Context
 		// Second parameter - Layout for the row
 		// Third parameter - ID of the View to which the data is written
 		// Forth - the Array of data
@@ -103,22 +107,26 @@ public class DisplayPointsActivity extends Activity {
 
 		// Assign adapter to ListView
 		listView.setAdapter(adapter);
-
+		//Set Listener for returning to edit an observation
 		listView.setOnItemClickListener(new ListView.OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				// displayData(2);
-				// Log.d("Position",Integer.toString(position));
-				// pos = position;
-				// showPopupMenu(view);
+				Bundle b = new Bundle();
+				b.putLong("rowid", mRowId);
+				b.putInt("observation", position);
+				Intent i = new Intent(DisplayPointsActivity.this,
+						AddObservationsActivity.class);
+				i.putExtras(b);
+				DisplayPointsActivity.this.startActivity(i);
+				
 
 				Toast.makeText(getApplicationContext(),
 						"Click ListItem Number " + position, Toast.LENGTH_LONG)
 						.show();
 			}
-		});*/
+		});
 	}
 
 	public void PopulatePage() {
