@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class TraverseDatabaseHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "traversedata";
 	
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 1;
 	
 	public TraverseDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

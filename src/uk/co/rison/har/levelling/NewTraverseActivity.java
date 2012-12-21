@@ -65,7 +65,7 @@ public class NewTraverseActivity extends Activity{
 					if (id > 0) {
 						mRowId = id;
 						Bundle b = new Bundle();
-						b.putLong("message", mRowId);
+						b.putLong("rowid", mRowId);
 						Intent i = new Intent(NewTraverseActivity.this,DisplayPointsActivity.class);
 						i.putExtras(b);
 						NewTraverseActivity.this.startActivity(i);

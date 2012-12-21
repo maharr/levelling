@@ -29,7 +29,7 @@ public class DisplayPointsActivity extends Activity {
 	private Long mRowId;
 
 	public void onCreate(Bundle savedInstanceState) {
-		mRowId = (Long) getIntent().getSerializableExtra("message");
+		mRowId = (Long) getIntent().getSerializableExtra("rowid");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.display_traverse_points);
 		mName = (TextView) findViewById(R.id.Name);
@@ -134,7 +134,6 @@ public class DisplayPointsActivity extends Activity {
 		Log.d("test", Long.toString(mRowId));
 		Cursor traverse = dbHelper.fetchTraverse(mRowId);
 		Log.d("test", "is this caught");
-		startManagingCursor(traverse);
 		Log.d("inserted", traverse.getString(traverse
 				.getColumnIndexOrThrow(TraverseAdapter.KEY_NAME)));
 		mName.setText(traverse.getString(traverse

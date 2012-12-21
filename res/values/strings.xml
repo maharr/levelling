@@ -4,5 +4,8 @@
     <string name="hello">Hello World, LevelingActivity!</string>
     <string name="app_name">Land Surveyors Notebook</string>
     <string name="editCol">BackColour</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_display_traverse">DisplayTraverse</string>
 
 </resources>

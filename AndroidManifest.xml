@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uk.co.rison.har.levelling"
+    android:installLocation="auto"
     android:versionCode="1"
-    android:versionName="0.1" android:installLocation="auto">
+    android:versionName="0.1" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -15,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/MyTheme" >
         <activity
-            android:name="LevellingActivity"
+            android:name="uk.co.rison.har.levelling.LevellingActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,11 +24,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="NewTraverseActivity" >
+        <activity android:name="uk.co.rison.har.levelling.NewTraverseActivity" >
         </activity>
-        <activity android:name="DisplayPointsActivity" >
+        <activity android:name="uk.co.rison.har.levelling.DisplayPointsActivity" >
         </activity>
-        <activity android:name="AddObservationsActivity" >
+        <activity android:name="uk.co.rison.har.levelling.AddObservationsActivity" >
+        </activity>
+        <activity
+            android:name="uk.co.rison.har.levelling.DisplayTraverse"
+            android:label="@string/title_activity_display_traverse" >
         </activity>
     </application>
 
