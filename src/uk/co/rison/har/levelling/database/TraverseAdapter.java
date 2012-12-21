@@ -1,4 +1,4 @@
-package uk.co.rison.har.leveling.database;
+package uk.co.rison.har.levelling.database;
 
 import android.content.ContentValues;
 import android.content.Context;

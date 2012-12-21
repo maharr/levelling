@@ -1,4 +1,4 @@
-package uk.co.rison.har.leveling;
+package uk.co.rison.har.levelling;
 
 import java.util.ArrayList;
 
@@ -15,8 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import uk.co.rison.har.leveling.database.TraverseAdapter;
-import uk.co.rison.har.leveling.database.ReadingAdapter;
+import uk.co.rison.har.levelling.database.ReadingAdapter;
+import uk.co.rison.har.levelling.database.TraverseAdapter;
 
 public class DisplayPointsActivity extends Activity {
 	private TextView mName;
