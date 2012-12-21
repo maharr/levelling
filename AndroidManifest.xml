@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="uk.co.rison.har.leveling"
+    package="uk.co.rison.har.levelling"
     android:versionCode="1"
-    android:versionName="0.1" >
+    android:versionName="0.1" android:installLocation="auto">
 
-    
-    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="15"/>
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="17" />
 
     <application
+        android:allowBackup="false"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/notebook_icon"
-        android:label="@string/app_name" 
-        android:theme="@style/MyTheme"  android:hardwareAccelerated="true">
-        
-        
+        android:label="@string/app_name"
+        android:theme="@style/MyTheme" >
         <activity
-            android:label="@string/app_name"
-            android:name="LevellingActivity" >
-            <intent-filter >
+            android:name="LevellingActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity android:name="NewTraverseActivity"></activity>
-        
-        <activity android:name="DisplayPointsActivity"></activity>
-        
-        <activity android:name="AddObservationsActivity"></activity>
-        
+        <activity android:name="NewTraverseActivity" >
+        </activity>
+        <activity android:name="DisplayPointsActivity" >
+        </activity>
+        <activity android:name="AddObservationsActivity" >
+        </activity>
     </application>
 
 </manifest>
