@@ -85,7 +85,15 @@
     <ListView
         android:id="@+id/obsList"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="266dp"
+        android:layout_weight="1" >
     </ListView>
+
+    <Button
+        android:id="@+id/performCalculations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_allignParentBottom="true"
+        android:text="Perform Calculations" />
 
 </LinearLayout>

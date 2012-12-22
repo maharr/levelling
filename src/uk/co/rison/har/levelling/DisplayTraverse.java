@@ -50,7 +50,7 @@ public class DisplayTraverse extends Activity {
 			int i;
 			for (i = 0; i < cursor.getCount(); i++) {
 				cursor.moveToPosition(i);
-				TraverseList.add("Traverse " + cursor.getInteger(1));
+				TraverseList.add("Traverse " + cursor.getString(1));
 				Log.d("traverse number", cursor.getString(0));
 			}
 		}

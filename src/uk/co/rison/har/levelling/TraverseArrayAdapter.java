@@ -1,4 +1,4 @@
-package uk.co.rison.har.levelling;
+/*package uk.co.rison.har.levelling;
 
 import uk.co.rison.har.levelling.database.TraverseAdapter;
 import android.os.Bundle;
@@ -29,27 +29,6 @@ public class TraverseArrayAdapter extends ArrayAdapter<Integer> {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
 		
-		
-		
-		Cursor traverse = dbHelper.fetchTraverse(mRowId);
-		
-		Log.d("inserted", traverse.getString(traverse
-				.getColumnIndexOrThrow(TraverseAdapter.KEY_NAME)));
-		mName.setText(traverse.getString(traverse
-				.getColumnIndexOrThrow(TraverseAdapter.KEY_NAME)));
-		Log.d("test", "is this caught");
-		mDate.setText(addSlashesDate(traverse.getString(traverse
-				.getColumnIndexOrThrow(TraverseAdapter.KEY_SURVEYDATE))));
-		mObserver.setText("O: "
-				+ traverse.getString(traverse
-						.getColumnIndexOrThrow(TraverseAdapter.KEY_OBSERVER)));
-		mType.setText(asUpperCaseFirstChar(traverse.getString(traverse
-				.getColumnIndexOrThrow(TraverseAdapter.KEY_TYPE))));
-		mStaffman.setText("S: "
-				+ traverse.getString(traverse
-						.getColumnIndexOrThrow(TraverseAdapter.KEY_STAFFMAN)));
-		
-		
 		TextView textView = (TextView) rowView.findViewById(R.id.label);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
 		textView.setText(values[position]);
@@ -65,4 +44,5 @@ public class TraverseArrayAdapter extends ArrayAdapter<Integer> {
 		return rowView;
 	}
 
-}
+}*/
+// This has been Abandoned until the rest of the app is completed

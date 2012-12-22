@@ -36,6 +36,7 @@ public class AddObservationsActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		traverse = (Long) getIntent().getSerializableExtra("rowid");
 		observation = (Integer) getIntent().getSerializableExtra("observation");
+		observation++;
 		super.onCreate(savedInstanceState);
     	 	mDbHelper = new ReadingAdapter(this);
 		mDbHelper.open();
