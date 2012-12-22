@@ -141,11 +141,11 @@ public class DisplayPointsActivity extends Activity {
 		Log.d("test", "is this caught");
 		mDate.setText(addSlashesDate(traverse.getString(traverse
 				.getColumnIndexOrThrow(TraverseAdapter.KEY_SURVEYDATE))));
-		mObserver.setText(traverse.getString(traverse
+		mObserver.setText("O: " + traverse.getString(traverse
 				.getColumnIndexOrThrow(TraverseAdapter.KEY_OBSERVER)));
 		mType.setText(asUpperCaseFirstChar(traverse.getString(traverse
 				.getColumnIndexOrThrow(TraverseAdapter.KEY_TYPE))));
-		mStaffman.setText(traverse.getString(traverse
+		mStaffman.setText("S: " + traverse.getString(traverse
 				.getColumnIndexOrThrow(TraverseAdapter.KEY_STAFFMAN)));
 
 	}

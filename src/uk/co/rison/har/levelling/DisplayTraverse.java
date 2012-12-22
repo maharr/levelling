@@ -74,8 +74,9 @@ public class DisplayTraverse extends Activity {
 					int position, long id) {
 
 				Bundle b = new Bundle();
-				cursor.move(position);
+				cursor.moveToPosition(position);
 				Log.d("Traverse Number", cursor.getString(0));
+				Log.d("Position", Integer.toString(position));
 				b.putLong("rowid", cursor.getLong(0));
 				Intent i = new Intent(DisplayTraverse.this,	DisplayPointsActivity.class);
 				i.putExtras(b);

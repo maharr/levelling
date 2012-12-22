@@ -20,23 +20,13 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/Observer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/Name"
-            android:paddingLeft="3sp"
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
             android:id="@+id/StaffMan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/Observer"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/Observer"
+            android:gravity="right"
             android:paddingLeft="3sp"
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -59,6 +49,19 @@
             android:layout_below="@+id/Name"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/Observer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/Name"
+            android:gravity="right"
+            android:paddingLeft="3sp"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
     </RelativeLayout>
 
     <LinearLayout
