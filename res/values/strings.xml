@@ -8,5 +8,8 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_display_traverse">DisplayTraverse</string>
     <string name="title_activity_calculation">CalculationActivity</string>
+    <string name="title_new_traverse_activity">TraverseActivity</string>
+    <string name="title_display_points_activity">DisplayPointsActivity</string>
+    <string name="title_add_observation_activity">AddObservarionActivity</string>
 
 </resources>

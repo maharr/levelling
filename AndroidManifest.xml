@@ -24,11 +24,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="uk.co.rison.har.levelling.NewTraverseActivity" android:label="@string/title_new_traverse_activity">
+        <activity
+            android:name="uk.co.rison.har.levelling.NewTraverseActivity"
+            android:label="@string/title_new_traverse_activity" >
         </activity>
-        <activity android:name="uk.co.rison.har.levelling.DisplayPointsActivity" android:label="@string/title_display_points_activity">
+        <activity
+            android:name="uk.co.rison.har.levelling.DisplayPointsActivity"
+            android:label="@string/title_display_points_activity" >
         </activity>
-        <activity android:name="uk.co.rison.har.levelling.AddObservationsActivity" android:label="@string/title_add_observation_activity">
+        <activity
+            android:name="uk.co.rison.har.levelling.AddObservationsActivity"
+            android:label="@string/title_add_observation_activity" >
         </activity>
         <activity
             android:name="uk.co.rison.har.levelling.DisplayTraverse"
