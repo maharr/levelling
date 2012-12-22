@@ -107,7 +107,7 @@ public class DisplayPointsActivity extends Activity {
 
 		// Assign adapter to ListView
 		listView.setAdapter(adapter);
-		//Set Listener for returning to edit an observation
+		// Set Listener for returning to edit an observation
 		listView.setOnItemClickListener(new ListView.OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -120,7 +120,6 @@ public class DisplayPointsActivity extends Activity {
 						AddObservationsActivity.class);
 				i.putExtras(b);
 				DisplayPointsActivity.this.startActivity(i);
-				
 
 				Toast.makeText(getApplicationContext(),
 						"Click ListItem Number " + position, Toast.LENGTH_LONG)
@@ -141,12 +140,14 @@ public class DisplayPointsActivity extends Activity {
 		Log.d("test", "is this caught");
 		mDate.setText(addSlashesDate(traverse.getString(traverse
 				.getColumnIndexOrThrow(TraverseAdapter.KEY_SURVEYDATE))));
-		mObserver.setText("O: " + traverse.getString(traverse
-				.getColumnIndexOrThrow(TraverseAdapter.KEY_OBSERVER)));
+		mObserver.setText("O: "
+				+ traverse.getString(traverse
+						.getColumnIndexOrThrow(TraverseAdapter.KEY_OBSERVER)));
 		mType.setText(asUpperCaseFirstChar(traverse.getString(traverse
 				.getColumnIndexOrThrow(TraverseAdapter.KEY_TYPE))));
-		mStaffman.setText("S: " + traverse.getString(traverse
-				.getColumnIndexOrThrow(TraverseAdapter.KEY_STAFFMAN)));
+		mStaffman.setText("S: "
+				+ traverse.getString(traverse
+						.getColumnIndexOrThrow(TraverseAdapter.KEY_STAFFMAN)));
 
 	}
 

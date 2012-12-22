@@ -44,6 +44,10 @@
             android:name="uk.co.rison.har.levelling.CalculationActivity"
             android:label="@string/title_activity_calculation" >
         </activity>
+        <activity
+            android:name="uk.co.rison.har.levelling.TraverseArrayAdapter"
+            android:label="@string/title_activity_traverse_array_adapter" >
+        </activity>
     </application>
 
 </manifest>

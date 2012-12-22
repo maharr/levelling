@@ -12,87 +12,95 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 import uk.co.rison.har.levelling.database.TraverseAdapter;
 
-public class NewTraverseActivity extends Activity{
+public class NewTraverseActivity extends Activity {
 	private TraverseAdapter mDbHelper;
 	private Long mRowId;
+
 	/** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-    	super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_traverse);
-        mDbHelper = new TraverseAdapter(this);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.new_traverse);
+		mDbHelper = new TraverseAdapter(this);
 		mDbHelper.open();
-        Button CreateTraverse = (Button) findViewById(R.id.TraverseInfo);
-        CreateTraverse.setOnClickListener(new View.OnClickListener() {
-			
+		Button CreateTraverse = (Button) findViewById(R.id.TraverseInfo);
+		CreateTraverse.setOnClickListener(new View.OnClickListener() {
+
 			public void onClick(View v) {
 				EditText NameInput = (EditText) findViewById(R.id.traverseName);
 				String name = null;
-				if  (NameInput.getText().toString().equals("")){
+				if (NameInput.getText().toString().equals("")) {
 					name = null;
-				}else{	
+				} else {
 					name = NameInput.getText().toString();
 				}
-				
+
 				RadioButton Closed = (RadioButton) findViewById(R.id.travClosed);
 				RadioButton Open = (RadioButton) findViewById(R.id.travOpen);
 				RadioButton Compound = (RadioButton) findViewById(R.id.travCompound);
 				String type = null;
-				
-				if (Closed.isChecked()==true){
+
+				if (Closed.isChecked() == true) {
 					type = "closed";
 				}
-				if (Open.isChecked()==true){
+				if (Open.isChecked() == true) {
 					type = "open";
 				}
-				if (Compound.isChecked()==true){
+				if (Compound.isChecked() == true) {
 					type = "compound";
 				}
-				
+
 				EditText ObserverInput = (EditText) findViewById(R.id.observer);
 				String observer = ObserverInput.getText().toString();
-				
+
 				EditText StaffmanInput = (EditText) findViewById(R.id.staffman);
 				String staffman = StaffmanInput.getText().toString();
-				
+
 				DatePicker DateInput = (DatePicker) findViewById(R.id.LevellingDate);
-				String survey_date = (addLeadingZero(DateInput.getDayOfMonth()) +   addLeadingZero(DateInput.getMonth()+1) + String.valueOf(DateInput.getYear()) );
-				String modified_date = String.valueOf(System.currentTimeMillis());		
-				
-				if (name != null){
-					
-					long id = mDbHelper.createTraverse(name,type,observer,staffman,survey_date,modified_date);
+				String survey_date = (addLeadingZero(DateInput.getDayOfMonth())
+						+ addLeadingZero(DateInput.getMonth() + 1) + String
+						.valueOf(DateInput.getYear()));
+				String modified_date = String.valueOf(System
+						.currentTimeMillis());
+
+				if (name != null) {
+
+					long id = mDbHelper.createTraverse(name, type, observer,
+							staffman, survey_date, modified_date);
 					if (id > 0) {
 						mRowId = id;
 						Bundle b = new Bundle();
 						Log.d("RowId", Long.toString(mRowId));
 						b.putLong("rowid", mRowId);
-						Intent i = new Intent(NewTraverseActivity.this,DisplayPointsActivity.class);
+						Intent i = new Intent(NewTraverseActivity.this,
+								DisplayPointsActivity.class);
 						i.putExtras(b);
 						NewTraverseActivity.this.startActivity(i);
 						finish();
-						
+
 					}
-				}else{
-					Toast.makeText(getApplicationContext(), "Please Complete of the Fields marked *", Toast.LENGTH_LONG).show();
+				} else {
+					Toast.makeText(getApplicationContext(),
+							"Please Complete of the Fields marked *",
+							Toast.LENGTH_LONG).show();
 				}
-			}		
+			}
 		});
-    } 
-    
-    public void onDestroy(){
-    	super.onDestroy();
-    	if (mDbHelper != null) {
+	}
+
+	public void onDestroy() {
+		super.onDestroy();
+		if (mDbHelper != null) {
 			mDbHelper.close();
 		}
-    }
+	}
 
-    public final static String addLeadingZero(final int target){
-    	if (target<10){
-    		return "0" + String.valueOf(target);
-    	}else{
-    		return String.valueOf(target);
-       	}
-    }
-    	    
+	public final static String addLeadingZero(final int target) {
+		if (target < 10) {
+			return "0" + String.valueOf(target);
+		} else {
+			return String.valueOf(target);
+		}
+	}
+
 }

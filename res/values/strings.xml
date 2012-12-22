@@ -11,5 +11,6 @@
     <string name="title_new_traverse_activity">TraverseActivity</string>
     <string name="title_display_points_activity">DisplayPointsActivity</string>
     <string name="title_add_observation_activity">AddObservarionActivity</string>
+    <string name="title_activity_traverse_array_adapter">TraverseArrayAdapter</string>
 
 </resources>

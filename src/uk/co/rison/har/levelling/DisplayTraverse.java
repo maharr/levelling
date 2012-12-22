@@ -50,7 +50,7 @@ public class DisplayTraverse extends Activity {
 			int i;
 			for (i = 0; i < cursor.getCount(); i++) {
 				cursor.moveToPosition(i);
-				TraverseList.add("Traverse " + cursor.getString(1));
+				TraverseList.add("Traverse " + cursor.getInteger(1));
 				Log.d("traverse number", cursor.getString(0));
 			}
 		}
@@ -78,7 +78,8 @@ public class DisplayTraverse extends Activity {
 				Log.d("Traverse Number", cursor.getString(0));
 				Log.d("Position", Integer.toString(position));
 				b.putLong("rowid", cursor.getLong(0));
-				Intent i = new Intent(DisplayTraverse.this,	DisplayPointsActivity.class);
+				Intent i = new Intent(DisplayTraverse.this,
+						DisplayPointsActivity.class);
 				i.putExtras(b);
 				DisplayTraverse.this.startActivity(i);
 
